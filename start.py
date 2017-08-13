@@ -48,7 +48,7 @@ def cleanup():
     print("cleanup")
     mqtt_client.loop_stop()
     mqtt_client.disconnect()
-    GPIO.cleanup()
+    GPIO.cleanup(config['led']['channel'])
 
 def flash():
     for flashes in range(0, config['led']['num_flashes']):
@@ -81,4 +81,4 @@ try:
     print("Starting main loop...")
     mqtt_client.loop_forever()
 finally:
-    cleanup(config['led']['channel'])
+    cleanup()
