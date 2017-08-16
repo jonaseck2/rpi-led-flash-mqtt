@@ -5,11 +5,12 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import os
 import time
+import signal
 
 # Default configuration
 config = {
     'mqtt': {
-        'broker': os.getenv('MQTT_HOST', 'localhost'),
+        'broker': os.getenv('MQTT_BROKER', 'localhost'),
         'port': int(os.getenv('MQTT_PORT', '1883')),
         'prefix': os.getenv('MQTT_PREFIX', 'media'),
         'topic': os.getenv('MQTT_TOPIC', 'led'),
