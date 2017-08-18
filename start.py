@@ -69,7 +69,7 @@ try:
     mqtt_client.on_message = mqtt_on_message
     if config['mqtt']['user']:
         mqtt_client.username_pw_set(config['mqtt']['user'], password=config['mqtt']['password']);
-    mqtt_client.connect(config['mqtt']['broker'], config['mqtt']['port'], 60)
+    mqtt_client.connect_async(config['mqtt']['broker'], config['mqtt']['port'], 60)
     mqtt_client.loop_start()
 
     ### Setup GPIO ###
@@ -80,6 +80,6 @@ try:
     pwm.start(0)
 
     print("Starting main loop...")
-    mqtt_client.loop_forever()
+    mqtt_client.loop_forever(retry_first_connection=True)
 finally:
     cleanup()
